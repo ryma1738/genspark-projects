@@ -72,4 +72,5 @@ public class AppTest {
         assertEquals(App.guessLetter("b"), 401);
 
     }
+
 }

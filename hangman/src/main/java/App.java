@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+
 public class App {
     public static final String[] wordList = 
     {"hello", "major", "summary", "cucumber", "move", "harmony", "insurance", "kill", "undertake", "greet", "slice", "crop", 
