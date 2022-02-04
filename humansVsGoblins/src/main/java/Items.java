@@ -43,22 +43,77 @@ public class Items {
         }
     }
   
-
-    private void randomItem(String type) {
-        int selector = (int) Math.round(Math.random() * 99);
+    private void randomItem(String type) { 
+        // provides random Items based on type and percentage values (nice Items are harder to get).
+        int selector = (int) Math.floor(Math.random() * 100);
         if (type.equals("weapon")) {
-            if (selector >= 0 && selector <10) {
-
-            } else if (selector >= 10 && selector <20) {
-
+            this.type = "weapon";
+            String[] name = { "Stick", "Work Hammer", "Wooden Club", "Iron Sword", "Bronze Dagger", "Axe", 
+                            "Steal Sword", "Gold Plated Sword"};
+            if (selector >= 0 && selector <19) {         // 20%
+                this.name = name[0];      
+                this.modifier = allWeapons.get(name[0]);
+            } else if (selector >= 19 && selector <34) { //15%
+                this.name = name[1];
+                this.modifier = allWeapons.get(name[1]);
+            } else if (selector >= 34 && selector < 49) { //15%
+                this.name = name[2];
+                this.modifier = allWeapons.get(name[2]);
+            } else if (selector >=49 && selector < 65) { // 15%
+                this.name = name[3];
+                this.modifier = allWeapons.get(name[3]);
+            } else if (selector >=65  && selector < 76) { // 11%
+                this.name = name[4];
+                this.modifier = allWeapons.get(name[4]);
+            } else if (selector >= 76 && selector < 87) { //11%
+                this.name = name[5];
+                this.modifier = allWeapons.get(name[5]);
+            } else if (selector >= 87 && selector < 95 ) { // 8%
+                this.name = name[6];
+                this.modifier = allWeapons.get(name[6]);
+            } else {                                       // 5%
+                this.name = name[7];
+                this.modifier = allWeapons.get(name[7]);
             }
         } else if (type.equals("armor")) {
-
+            this.type = "armor";
+            String[] name = {"Peasants Cloths", "Goblin Leather", "Padded Leather Suit", "Chain Mail Armor Piece",
+                            "Full Chain Mail Armor"};
+            if (selector >= 0 && selector < 39) {         //40%
+                this.name = name[0];
+                this.modifier = allArmor.get(name[0]);
+            } else if (selector >= 39 && selector < 69) { //30%
+                this.name = name[1];
+                this.modifier = allArmor.get(name[1]);
+            } else if (selector >= 69 && selector < 84) { // 15%
+                this.name = name[2];
+                this.modifier = allArmor.get(name[2]);
+            } else if (selector >= 84 && selector < 95) { //11%
+                this.name = name[3];
+                this.modifier = allArmor.get(name[3]);
+            } else {                                      // 5%
+                this.name = name[4];
+                this.modifier = allArmor.get(name[4]);
+            }
         } else if (type.equals("consumable")) {
-
+            this.type = "consumable";
+            String[] name = {"Goblin Bomb", "Health Potion", "Great Health Potion", "Goblin Missile"};
+            if (selector >= 0 && selector < 39) {          // 40%
+                this.name = name[0];
+                this.modifier = allConsumables.get(name[0]);
+            } else if (selector >= 39 && selector < 79) {  // 40%
+                this.name = name[1];
+                this.modifier = allConsumables.get(name[1]);
+            } else if (selector >= 79 && selector < 89) {  // 10%
+                this.name = name[2];
+                this.modifier = allConsumables.get(name[2]);
+            } else {                                       // 10%
+                this.name = name[3];
+                this.modifier = allConsumables.get(name[3]);
+            }
         } else {
             String[] types = {"weapon", "armor", "consumable"};
-            int typeIndex = (int) Math.round(Math.random() * 2);
+            int typeIndex = (int) Math.floor(Math.random() * 3);
             randomItem(types[typeIndex]);
         }
     }
@@ -73,7 +128,7 @@ public class Items {
             if (this.modifier > 0) {
                 return this.name + ": type = Consumable, Heals the player by " + this.modifier + " points.";
             } else {
-                return this.name + ": type = Consumable, Damages enemy by " + this.modifier + " points.";
+                return this.name + ": type = Consumable, Damages enemy by " + this.modifier + ".";
             }
         }
     }
@@ -88,6 +143,7 @@ public class Items {
             tempHash.put("Iron Sword", 3);
             tempHash.put("Stick", 1);
             tempHash.put("Axe", 4);
+            tempHash.put("Work Hammer", 2);
 
         } else if (type.equals("consumable")) {
             tempHash.put("Goblin Bomb", -5);
@@ -96,9 +152,12 @@ public class Items {
             tempHash.put("Goblin Missile", -10);
 
         } else if (type.equals("armor")) {
+            tempHash.put("Cloth Robe", 0);
             tempHash.put("Peasants Cloths", 1);
             tempHash.put("Goblin Leather", 2);
-
+            tempHash.put("Padded Leather Suit", 3);
+            tempHash.put("Chain Mail Armor Piece", 4);
+            tempHash.put("Full Chain Mail Armor", 6);
         }
         return tempHash;
     }
