@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Entity { 
     public Items[] inventory;
@@ -76,6 +77,63 @@ public class Entity {
                 addToInventory(new Items("armor"));
             } else if (typesAllowed.equals("consumables")) {
                 addToInventory(new Items("consumables"));
+            }
+        }
+    }
+
+    public int[] moveEntity(String direction, int[] currentLocation) { 
+        // if the entity is unable to move in that direction it will return the original cords
+        int[] cords = currentLocation;
+        direction = direction.toUpperCase();
+        if (direction.equals("N")) {
+            if (cords[0] != 2) cords[0] = cords[0] - 1;
+        } else if (direction.equals("S")) {
+            if (cords[0] != 22) cords[0] = cords[0] + 1;
+        } else if (direction.equals("E")) {
+            if (cords[1] != 30) cords[1] = cords[1] + 1;
+        } else if (direction.equals("W")) {
+            if (cords[1] != 1) cords[1] = cords[1] - 1;
+        }
+        return cords; 
+    }
+
+    public void interactWith(Human player, Goblin gob, Scanner input) { //fight
+
+    }
+    
+    public void interactWith(Human player, Treasure chest, Scanner input) { //loot chest
+        System.out.println("You encountered a chest! Lets see what is inside!");
+        if (!chest.checkInventory()) {
+            System.out.println("How Unfortunate this chest is empty!");
+            return;
+        }
+        while (true) {
+            chest.getInventory(null);
+            System.out.println("Enter an inventory slot # to loot single items, or any # greater than 5 to loot all Items");
+            int indexOfLoot = input.nextInt();
+            input.next();
+            if (indexOfLoot >= 5) {
+                Items[] loot = chest.lootAllTreasure();
+                for (Items item : loot) {
+                    if (item != null) {
+                        player.addToInventory(item);
+                    }
+                }
+            } else if (indexOfLoot < 5 && indexOfLoot >= 0) {
+                if (chest.inventory[indexOfLoot] != null) {
+                    player.addToInventory(chest.lootSingleItem(indexOfLoot));
+                } else System.out.println("Their is nothing in that slot to loot!");
+            } else System.out.println("Invalid input, please try again.");
+            if (!chest.checkInventory()) {
+                System.out.println("You have looted All items from this chest!");
+                player.getInventory(player.equipped);
+                break;
+            }
+            System.out.println("Would you like to loot more items? (N or any key to continue)");
+            String continueLooting = input.next().toUpperCase();
+            if (continueLooting.equals("N") || continueLooting.equals("NO")) {
+                player.getInventory(player.equipped);
+                break;
             }
         }
     }

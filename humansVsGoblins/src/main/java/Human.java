@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Human extends Entity {
     public int health = 30; 
@@ -14,7 +15,7 @@ public class Human extends Entity {
         this.equipped[1] = this.inventory[0];
     }
 
-    public void equipItem(int inventorySlot) {
+    public void equipItem(int slot, Scanner input) {
 
     }
 

@@ -1,8 +1,9 @@
 
 public class Treasure extends Entity {
-
-    public Treasure() {
+    public int[] cords;
+    public Treasure(int[] cords) {
         super(5);
+        this.cords = cords;
         this.addRandomItems(5, true, "all");
     }
 
