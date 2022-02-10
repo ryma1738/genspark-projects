@@ -115,7 +115,17 @@ public class Land {
     }
 
     public void removeEntity(Goblin gob) {
- 
+        String[] newArray = this.map.get(gob.cords[0]);
+        newArray[gob.cords[1]] = "*";
+        this.map.put(gob.cords[0], newArray);
+        int i = 0;
+        for (Goblin goblin : allGoblins) {
+            if (goblin.cords[0] == gob.cords[0] && goblin.cords[1] == gob.cords[1]) {
+                allGoblins.remove(i);
+                break;
+            }
+            i++;
+        }
     }
 
     public void removeEntity(Treasure chest) {

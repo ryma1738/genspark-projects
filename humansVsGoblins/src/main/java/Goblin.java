@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Goblin extends Entity {
-    public int health = (int) Math.floor((Math.random() * 10) + 10); // health 15-20
-    public int strength = (int) Math.floor((Math.random() * 5) + 3); // Strength 3-7
+    public int health = (int) Math.floor((Math.random() * 6) + 15); // health 15-20
+    public int strength = (int) Math.floor((Math.random() * 3) + 4); // Strength 4-6
     public int armor = 0;
     public int[] cords;
     public Items[] equipped = new Items[2];
@@ -77,5 +77,11 @@ public class Goblin extends Entity {
                 return null;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Goblin: strength = " + this.strength + 
+        ", health = " + this.health + ", armor = " + this.armor;
     }
 }

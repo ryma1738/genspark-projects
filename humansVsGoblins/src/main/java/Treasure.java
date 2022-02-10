@@ -7,17 +7,17 @@ public class Treasure extends Entity {
         this.addRandomItems(5, true, "all");
     }
 
-    public Items lootSingleItem(int index) {
-        Items loot = this.inventory[index];
-        this.removeFromInventory(index);
-        return loot;
-    }
-
-    public Items[] lootAllTreasure() {
-        Items[] loot = this.inventory;
-        for (int i = 0; i < loot.length; i++) {
-            this.removeFromInventory(i);
-        }
-        return loot;
+    @Override
+    public String toString() {
+        String contains = "";
+        if (this.checkInventory()) {contains = "This chest contains: ";
+            for (int i = 0; i < this.inventory.length; i++) {
+                if (this.inventory[i] != null) contains += this.inventory[i].name;
+                if (i == this.inventory.length - 1) contains += ".";
+                else if (i == this.inventory.length - 1 && this.inventory[i] != null) contains += ", ";
+            }   
+        } else contains = "This chest is empty.";
+        
+        return "Treasure Chest: " + contains;
     }
 }
