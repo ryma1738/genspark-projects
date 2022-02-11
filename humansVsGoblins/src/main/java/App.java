@@ -12,7 +12,7 @@ public class App {
         map.player = player;
         Scanner input = new Scanner(System.in);
         ArrayList<int[]> gobsCords = map.addGoblins(10);
-        ArrayList<int[]> treasureCords = map.addTressure(7);
+        ArrayList<int[]> treasureCords = map.addTreasure(7);
         for (int i = 0; i < gobsCords.size(); i++) {
             map.allGoblins.add(new Goblin(2, gobsCords.get(i)));
         }

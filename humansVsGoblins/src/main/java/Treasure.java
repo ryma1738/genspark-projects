@@ -10,7 +10,8 @@ public class Treasure extends Entity {
     @Override
     public String toString() {
         String contains = "";
-        if (this.checkInventory()) {contains = "This chest contains: ";
+        if (this.checkInventory()) {
+            contains = "This chest contains: ";
             for (int i = 0; i < this.inventory.length; i++) {
                 if (this.inventory[i] != null) contains += this.inventory[i].name;
                 if (i == this.inventory.length - 1) contains += ".";

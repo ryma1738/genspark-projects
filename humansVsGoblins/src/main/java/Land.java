@@ -45,8 +45,8 @@ public class Land {
         return allGobs; 
     }
 
-    public ArrayList<int[]> addTressure(int totalNum) {
-        ArrayList<int[]> allTressure = new ArrayList<int[]>();
+    public ArrayList<int[]> addTreasure(int totalNum) {
+        ArrayList<int[]> allTreasure = new ArrayList<int[]>();
         for (int i = 0; i < totalNum; i++) {
             int upAndDown = (int) Math.floor(Math.random() * 21) + 2;
             int sideToSide = (int) Math.floor(Math.random() * 30) + 1;
@@ -56,10 +56,10 @@ public class Land {
             } else {
                 temp[sideToSide] = "T";
                 this.map.put(upAndDown, temp);
-                allTressure.add(new int[] { upAndDown, sideToSide });
+                allTreasure.add(new int[] { upAndDown, sideToSide });
             }
         }
-        return allTressure;
+        return allTreasure;
     }
 
     public boolean moveEntityIcon(int[] currentPos, int[] newPos, Object entity) throws Exception { 
@@ -146,18 +146,6 @@ public class Land {
     public String toString() { // returns the whole map
         String stringToPrint = "";
         for (int i = 1; i <= 23; i++) {
-            String tempLine = "";
-            for (int j = 0; j < this.map.get(i).length; j++) {
-                tempLine += this.map.get(i)[j] + " ";
-            }
-            stringToPrint += tempLine + "\n";
-        }
-        return stringToPrint;
-    }
-
-    public String toString(int[] cords) { // returns zoomed in map - not done yet
-        String stringToPrint = "";
-        for (int i = 0; i <= 23; i++) {
             String tempLine = "";
             for (int j = 0; j < this.map.get(i).length; j++) {
                 tempLine += this.map.get(i)[j] + " ";
