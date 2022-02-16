@@ -1,11 +1,10 @@
-import java.util.HashMap;
+
 import java.util.Scanner;
 
 public class Human extends Entity {
     public int health = 30; 
     public int strength = 4; 
     public int armor = 0;
-    public HashMap<Integer, Integer> currentPos;
     public Items[] equipped = new Items[2]; // 0 is a weapon, 1 is armor
     public int[] cords = {12, 15}; // middle of the map
 
